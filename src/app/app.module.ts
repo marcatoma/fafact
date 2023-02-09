@@ -5,8 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 //
-// import { ProductosModule } from './productos/productos.module';
-import { HomeModule } from './home/home.module';
+// modulos
+//mport { HomeModule } from './home/home.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -21,6 +21,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -29,11 +30,12 @@ import { MatIconModule } from '@angular/material/icon';
     SidenavComponent,
     DashboardComponent,
     HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HomeModule,
+   // HomeModule,
     AppRoutingModule,
     HttpClientModule,
     PanelMenuModule,

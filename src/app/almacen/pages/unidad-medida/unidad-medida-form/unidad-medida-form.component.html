@@ -1,0 +1,27 @@
+<div class="mensajes">
+    <p-messages></p-messages>
+</div>
+<form [formGroup]="unidadMedidaForm">
+    <div class="p-field">
+        <label for="name"><b>Abreviacion</b></label>
+        <input type="text" pInputText class="inputtext" id="name" required autofocus autocomplete="off"
+            formControlName="abreviacion" />
+        <small class="invalid" *ngIf="errores.has('abreviacion')">{{errores.get('abreviacion')}}</small>
+    </div>
+    <div class="p-field">
+        <label for="name"><b>Descripcion</b></label>
+        <input type="text" pInputText class="inputtext" id="name" required autofocus autocomplete="off"
+            formControlName="descripcion" />
+        <small class="invalid" *ngIf="errores.has('descripcion')">{{errores.get('descripcion')}}</small>
+    </div>
+    <div>
+        <label for="estado"><b>Estado de la unidad de medida</b></label>
+        <p-toggleButton id="estado" onLabel="Activo" offLabel="Inactivo" formControlName="estado"></p-toggleButton>
+    </div>
+</form>
+<div class="footer">
+    <button class="buttons p-button-success" type="button" (click)="saveUnidadMedida()" pButton icon="pi pi-plus"
+        label="Guardar"></button>
+    <button class="buttons p-button-danger" type="button" (click)="dismissDialog()" pButton icon="pi pi-plus"
+        label="Cancelar"></button>
+</div>

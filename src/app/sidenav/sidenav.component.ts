@@ -14,8 +14,13 @@ export class SidenavComponent implements OnInit {
   ngOnInit(): void {
     this.items = [
       {
-        label: 'File',
-        icon: 'pi pi-pw pi-file',
+        label: 'Home',
+        icon: 'pi pi-home',
+        routerLink: ['/almacen']
+      },
+      {
+        label: 'Almacen',
+        icon: 'pi pi-pw pi-box',
         items: [{
           label: 'New',
           icon: 'pi pi-fw pi-plus',
@@ -24,9 +29,11 @@ export class SidenavComponent implements OnInit {
             { label: 'Filter', icon: 'pi pi-fw pi-filter' }
           ]
         },
-        { label: 'Open', icon: 'pi pi-fw pi-external-link' },
+        { label: 'Categoria', icon: 'pi pi-fw pi-tags', routerLink: ['almacen/categoria'] },
+        { label: 'Producto', icon: 'pi pi-fw pi-book', routerLink: ['almacen/producto'] },
         { separator: true },
-        { label: 'Quit', icon: 'pi pi-fw pi-times' }
+        { label: 'Unidad de medida', icon: 'pi pi-fw pi-percentage', routerLink: ['almacen/unidad-medida'] },
+        { label: 'Quit', icon: 'pi pi-fw pi-times' },
         ]
       },
       {
