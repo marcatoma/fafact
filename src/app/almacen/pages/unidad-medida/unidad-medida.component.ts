@@ -3,9 +3,9 @@ import { UnidadMedidaModel } from 'src/app/models/unidad-medida.model';
 import { UnidadMedidaService } from '../../services/unidad-medida.service';
 import { DialogService } from 'primeng/dynamicdialog';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { MessageService } from 'primeng/api';
 
 import { UnidadMedidaFormComponent } from '../unidad-medida/unidad-medida-form/unidad-medida-form.component'
+import { Paginador } from 'src/app/models/paginador.model';
 
 @Component({
   selector: 'app-unidad-medida',
@@ -16,7 +16,10 @@ import { UnidadMedidaFormComponent } from '../unidad-medida/unidad-medida-form/u
 export class UnidadMedidaComponent implements OnInit, OnDestroy {
   unidadMedidaList: UnidadMedidaModel[];
   first = 0;
-  rows = 10;
+  rowsPerPage = 10;
+  page = 0;
+  paginador: Paginador = {};
+  query: string = '';
   constructor(private unidadMedidaService: UnidadMedidaService, public dialogService: DialogService) {
     this.unidadMedidaList = [];
   }
@@ -26,19 +29,20 @@ export class UnidadMedidaComponent implements OnInit, OnDestroy {
     this.ListarUnidadMedida();
   }
 
-  ListarUnidadMedida = (): void => {
-    this.unidadMedidaService.ListarUnidadMedida().subscribe(response => {
-      console.log(response);
-      this.unidadMedidaList = response;
+  filtrarPorQuery(event: any) {
+    this.ListarUnidadMedida(this.query);
+  }
+
+  ListarUnidadMedida = (q: string = ''): void => {
+    this.unidadMedidaService.ListarUnidadMedida(this.page, this.rowsPerPage, q).subscribe(response => {
+      this.paginador = { ...response.content };
+      this.unidadMedidaList = response.content.content;
     });
   }
 
-  next() {
-    this.first = this.first + this.rows;
-  }
-
-  prev() {
-    this.first = this.first - this.rows;
+  clearFilter() {
+    this.query = '';
+    this.ListarUnidadMedida(this.query);
   }
 
   reset() {
@@ -46,11 +50,17 @@ export class UnidadMedidaComponent implements OnInit, OnDestroy {
   }
 
   isLastPage(): boolean {
-    return this.unidadMedidaList ? this.first === (this.unidadMedidaList.length - this.rows) : true;
+    console.log(this.paginador.last ? true : false);
+    return this.paginador.last ? true : false;
   }
 
   isFirstPage(): boolean {
-    return this.unidadMedidaList ? this.first === 0 : true;
+    console.log(this.paginador.first ? true : false);
+    return this.paginador.first ? true : false;
+  }
+
+  get totalRecords() {
+    return this.paginador.totalElements ? this.paginador.totalElements : 0;
   }
 
   show(unidad: UnidadMedidaModel) {
@@ -72,5 +82,14 @@ export class UnidadMedidaComponent implements OnInit, OnDestroy {
     if (this.ref) {
       this.ref.close();
     }
+  }
+  onSelectRowChange(event: any) {
+    this.rowsPerPage = event;
+    this.ListarUnidadMedida();
+  }
+
+  onFirtsChange(event: any) {
+    this.page = (event / this.rowsPerPage);
+    this.ListarUnidadMedida();
   }
 }

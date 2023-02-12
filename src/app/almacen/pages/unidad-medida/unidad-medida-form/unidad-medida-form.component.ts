@@ -61,11 +61,13 @@ export class UnidadMedidaFormComponent implements OnInit {
           this.messageService.clear();
           this.messageService.add({ severity: 'error', summary: err.error.mensaje, detail: err.error.error });
         }
-
-
       },    // errorHandler 
       next: (res) => {
         console.log(res);
+        //limpiar los mensajes anteriores
+        this.messageService.clear();
+        this.errores = new Map();
+
         if (this.unidadMedida.idUnidadMedida) {
           // cerrar el dialog al terminar de guardar o editar
           this.dismissDialog();

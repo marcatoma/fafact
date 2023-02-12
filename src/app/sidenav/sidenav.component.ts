@@ -33,6 +33,8 @@ export class SidenavComponent implements OnInit {
         { label: 'Producto', icon: 'pi pi-fw pi-book', routerLink: ['almacen/producto'] },
         { separator: true },
         { label: 'Unidad de medida', icon: 'pi pi-fw pi-percentage', routerLink: ['almacen/unidad-medida'] },
+        { label: 'Marca', icon: 'pi pi-fw pi-bookmark', routerLink: ['almacen/marca'] },
+
         { label: 'Quit', icon: 'pi pi-fw pi-times' },
         ]
       },

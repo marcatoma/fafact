@@ -5,6 +5,7 @@ import { ProductoComponent } from './pages/producto/producto.component';
 import { UnidadMedidaComponent } from './pages/unidad-medida/unidad-medida.component';
 import { CategoriaComponent } from './pages/categoria/categoria.component';
 import { UnidadMedidaFormComponent } from './pages/unidad-medida/unidad-medida-form/unidad-medida-form.component';
+import { MarcaComponent } from './pages/marca/marca.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,8 @@ const routes: Routes = [
             { path: 'categoria', component: CategoriaComponent },
             { path: 'unidad-medida', component: UnidadMedidaComponent },
             { path: 'unidad-medida-form', component: UnidadMedidaFormComponent },
+            { path: 'marca', component: MarcaComponent },
+
             // { path: '**', redirectTo: '' },
         ]
     }

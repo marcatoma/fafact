@@ -12,11 +12,11 @@ import { UnidadMedidaFormComponent } from './pages/unidad-medida/unidad-medida-f
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from "primeng/dialog";
-import {InputTextModule} from 'primeng/inputtext';
-import {ToggleButtonModule} from 'primeng/togglebutton';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
-
+import { InputTextModule } from 'primeng/inputtext';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { MarcaComponent } from './pages/marca/marca.component';
 
 
 @NgModule({
@@ -25,6 +25,7 @@ import {MessageModule} from 'primeng/message';
     CategoriaComponent,
     UnidadMedidaComponent,
     UnidadMedidaFormComponent,
+    MarcaComponent,
   ],
   imports: [
     CommonModule,
