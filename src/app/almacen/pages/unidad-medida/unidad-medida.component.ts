@@ -50,12 +50,10 @@ export class UnidadMedidaComponent implements OnInit, OnDestroy {
   }
 
   isLastPage(): boolean {
-    console.log(this.paginador.last ? true : false);
     return this.paginador.last ? true : false;
   }
 
   isFirstPage(): boolean {
-    console.log(this.paginador.first ? true : false);
     return this.paginador.first ? true : false;
   }
 

@@ -23,8 +23,8 @@ export class MarcaService {
     )
   }
   
-  RegistrarUnidadMedida(unidadMedida: MarcaModel): Observable<MarcaModel> {
-    return this.http.post(this.url + 'crear', unidadMedida).pipe(
+  RegistrarMarca(marca: MarcaModel): Observable<MarcaModel> {
+    return this.http.post(this.url + 'crear', marca).pipe(
       map((response: any) => response), catchError((e) => {
         console.log(e);
         return throwError(() => e);
