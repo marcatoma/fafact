@@ -17,6 +17,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { MarcaComponent } from './pages/marca/marca.component';
+import { CategoriaFormComponent } from './pages/categoria/categoria-form/categoria-form.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { MarcaComponent } from './pages/marca/marca.component';
     UnidadMedidaComponent,
     UnidadMedidaFormComponent,
     MarcaComponent,
+    CategoriaFormComponent,
   ],
   imports: [
     CommonModule,

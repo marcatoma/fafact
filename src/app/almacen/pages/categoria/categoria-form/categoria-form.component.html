@@ -1,0 +1,22 @@
+<div class="mensajes">
+    <p-messages></p-messages>
+</div>
+<form [formGroup]="categoriaForm">
+    <div class="p-field">
+        <label for="name"><b>Descripcion <p class="err">*</p></b></label>
+        <input type="text" pInputText class="inputtext" id="name" required autofocus autocomplete="off"
+            formControlName="descripcion" />
+        <small class="invalid" *ngIf="errores.has('descripcion')">{{errores.get('descripcion')}}</small>
+    </div>
+    <div>
+        <label for="estado"><b>Estado de la categoria</b></label>
+        <p-toggleButton id="estado" onLabel="Activo" offLabel="Inactivo" formControlName="estado"></p-toggleButton>
+    </div>
+</form>
+<div class="footer">
+    <button class="buttons p-button-success" [disabled]="!categoriaForm.valid?true:false" type="button"
+        (click)="saveCategoria()" pButton icon="pi pi-plus" label="Guardar"></button>
+    <button class="buttons p-button-danger" type="button" (click)="dismissDialog()" pButton icon="pi pi-plus"
+        label="Cancelar"></button>
+</div>
+<p class="err">Los campos con * son obligatorios</p>

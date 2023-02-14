@@ -1,1 +1,54 @@
-<p>categoria works!</p>
+<h1 class="tittle">Modulo: Almacen - Unidad de Medida</h1>
+<div class="header m-3">
+    <button type="button" (click)="show({})" pButton icon="pi pi-plus" label="Nuevo"></button>
+</div>
+<div class="card">
+    <div class="tabla">
+        <p-table #dt1 [value]="categoriaList" [paginator]="true" [rows]="rowsPerPage" [lazy]="true"
+            [showCurrentPageReport]="true" [tableStyle]="{'min-width': '50rem'}" [totalRecords]="totalRecords"
+            (rowsChange)="onSelectRowChange($event)" (firstChange)="onFirtsChange($event)"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10,25,50]">
+
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <button pButton label="Clear" class="p-button-outlined mx-3" (click)="clearFilter()" icon="pi pi-filter-slash"></button>
+                    <span class="p-input-icon-left ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="filtrarPorQuery($event)" [(ngModel)]="query"
+                            placeholder="Search keyword" />
+                    </span>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width:20%">ID</th>
+                    <th style="width:20%">Descripcion</th>
+                    <th style="width:20%">Estado</th>
+                    <th style="width:20%;">Opciones</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-categoria>
+                <tr>
+                    <td>{{categoria.idCategoria}}</td>
+                    <td>{{categoria.descripcion}}</td>
+                    <td>{{categoria.estado?'Activo':'Inactivo'}}</td>
+                    <td>
+                        <button pButton (click)="show(categoria)"
+                            class="p-button-raised p-button-rounded p-button-help btn_action mx-3" type="button"
+                            icon="pi pi-pencil" iconPos="left"></button>
+                        <button pButton class="p-button-raised p-button-rounded p-button-danger btn_action"
+                            type="button" icon="pi pi-trash" iconPos="left"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorleft">
+                <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+            </ng-template>
+            <ng-template pTemplate="paginatorright">
+                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

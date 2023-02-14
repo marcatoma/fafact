@@ -24,7 +24,6 @@ export class UnidadMedidaFormComponent implements OnInit {
     //cargar los datos a editar    
     if (config.data.idUnidadMedida) {
       this.unidadMedida = { ...config.data }
-      console.log(this.unidadMedida);
     }
 
   }
@@ -79,8 +78,8 @@ export class UnidadMedidaFormComponent implements OnInit {
 
       },     // nextHandler
     });
-
   }
+
   dismissDialog() {
     this.ref.close();
   }
