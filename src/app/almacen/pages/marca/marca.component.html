@@ -55,13 +55,14 @@
     </div>
 </div>
 
-<p-dialog header="Formulario de Marcas" (onHide)="dismissDialog()" position="center" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}">
+<p-dialog header="Formulario de Marcas" (onHide)="dismissDialog()" position="center" [(visible)]="display"
+    [modal]="true" [style]="{width: '50vw'}">
     <div class="mensajes">
         <p-messages></p-messages>
     </div>
     <form [formGroup]="marcaForm">
         <div class="p-field">
-            <label for="name"><b>Descripcion</b></label>
+            <label for="name"><b>Descripcion </b><p class="p-msg">*</p></label>
             <input type="text" pInputText class="inputtext" id="name" required autofocus autocomplete="off"
                 formControlName="descripcion" />
             <small class="invalid" *ngIf="errores.has('descripcion')">{{errores.get('descripcion')}}</small>
@@ -72,9 +73,10 @@
         </div>
     </form>
     <div class="footer">
-        <button class="buttons p-button-success" type="button" (click)="saveMarca()" pButton icon="pi pi-plus"
-            label="Guardar"></button>
+        <button class="buttons p-button-success" [disabled]="!marcaForm.valid" type="button" (click)="saveMarca()"
+            pButton icon="pi pi-plus" label="Guardar"></button>
         <button class="buttons p-button-danger" type="button" (click)="dismissDialog()" pButton icon="pi pi-plus"
             label="Cancelar"></button>
     </div>
+    <p class="p-msg">Los campos con * son obligatorios</p>
 </p-dialog>
