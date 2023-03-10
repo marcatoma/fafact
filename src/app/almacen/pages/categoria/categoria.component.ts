@@ -12,7 +12,7 @@ import { CategoriaFormComponent } from './categoria-form/categoria-form.componen
   providers: [DialogService]
 })
 export class CategoriaComponent implements OnInit, OnDestroy {
-  categoriaList: CategoriaModel[];
+  categoriaList: CategoriaModel[]; 
   first = 0;
   rowsPerPage = 10;
   page = 0;

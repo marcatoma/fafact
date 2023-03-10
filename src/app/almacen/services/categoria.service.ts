@@ -12,6 +12,16 @@ export class CategoriaService {
 
   constructor(private http: HttpClient) { }
 
+  ListarTodasCategoria(): Observable<any> {
+    return this.http.get(this.url + 'listar').pipe(
+      map((response: any) => response),
+      catchError((e) => {
+        console.log(e);
+        return throwError(() => e);
+      })
+    )
+  }
+
   ListarCategoria(page: number, filas: number, q: string): Observable<any> {
     let params = { 'q': q };
     return this.http.get(this.url + 'listar/page/' + page + '/filas/' + filas, { params }).pipe(
