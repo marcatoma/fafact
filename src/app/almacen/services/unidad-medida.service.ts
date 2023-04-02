@@ -22,6 +22,17 @@ export class UnidadMedidaService {
       })
     )
   }
+
+  ListarTodasUnidadMedida(): Observable<any> {
+    return this.http.get(this.url + 'listar').pipe(
+      map((response: any) => response),
+      catchError((e) => {
+        console.log(e);
+        return throwError(() => e);
+      })
+    )
+  }
+
   RegistrarUnidadMedida(unidadMedida: UnidadMedidaModel): Observable<UnidadMedidaModel> {
 
     return this.http.post(this.url + 'crear', unidadMedida).pipe(

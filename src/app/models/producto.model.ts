@@ -1,3 +1,4 @@
+import { MarcaModel } from "./marca";
 import { SubCategoriaModel } from "./sub-categoria.model";
 import { UnidadMedidaModel } from "./unidad-medida.model";
 
@@ -14,4 +15,5 @@ export interface ProductoModel {
     subCategoria?: SubCategoriaModel;
     iva?: boolean;
     inventariable?: boolean;
+    marca?:MarcaModel;
 }

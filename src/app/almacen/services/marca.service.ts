@@ -22,7 +22,17 @@ export class MarcaService {
       })
     )
   }
-  
+
+  ListarTodasMarcas(): Observable<any> {
+    return this.http.get(this.url + 'listar').pipe(
+      map((response: any) => response),
+      catchError((e) => {
+        console.log(e);
+        return throwError(() => e);
+      })
+    )
+  }
+
   RegistrarMarca(marca: MarcaModel): Observable<MarcaModel> {
     return this.http.post(this.url + 'crear', marca).pipe(
       map((response: any) => response), catchError((e) => {

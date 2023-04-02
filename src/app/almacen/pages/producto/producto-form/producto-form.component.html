@@ -60,8 +60,9 @@
             <!-- Sub categorias -->
             <div class="p-fieldc" style="margin-right: 20px;">
                 <label><b>Subcategoria <p class="lbl err">*</p></b></label>
-                <p-dropdown [options]="subCategorie" formControlName="subCategoria" class="inp" optionLabel="descripcion"
-                    [filter]="true" filterBy="descripcion" [showClear]="true" placeholder="Seleccione una subcategoria">
+                <p-dropdown [options]="subCategorie" formControlName="subCategoria" class="inp"
+                    optionLabel="descripcion" [filter]="true" filterBy="descripcion" [showClear]="true"
+                    placeholder="Seleccione una subcategoria">
                     <ng-template pTemplate="selectedItem">
                         <div *ngIf="productoForm.value['subCategoria']">
                             <div>{{this.productoForm.value['subCategoria'].descripcion}}</div>
@@ -77,41 +78,42 @@
             </div>
         </div>
         <!-- combo de unidad de medida y marca -->
+        <!-- combo de marca -->
         <div class="field-div">
             <div class="p-fieldc" style="margin-right: 20px;">
                 <label><b>Marca <p class="lbl err">*</p></b></label>
-                <p-dropdown [options]="categories" formControlName="subCategoria" class="inp" optionLabel="descripcion"
-                    [filter]="true" filterBy="descripcion" [showClear]="true" placeholder="Seleccione una categoria">
+                <p-dropdown [options]="marcas" formControlName="marca" class="inp" optionLabel="descripcion"
+                    [filter]="true" filterBy="descripcion" [showClear]="true" placeholder="Seleccione una marca">
                     <ng-template pTemplate="selectedItem">
-                        <div *ngIf="productoForm.value['subCategoria']">
-                            <div>{{this.productoForm.value['subCategoria'].descripcion}}</div>
+                        <div *ngIf="productoForm.value['marca']">
+                            <div>{{this.productoForm.value['marca'].descripcion}}</div>
                         </div>
                     </ng-template>
-                    <ng-template let-cat pTemplate="item">
+                    <ng-template let-marca pTemplate="item">
                         <div>
-                            <div>{{cat.descripcion}}</div>
+                            <div>{{marca.descripcion}}</div>
                         </div>
                     </ng-template>
                 </p-dropdown>
-                <small class="invalid" *ngIf="errores.has('categoria')">{{errores.get('categoria')}}</small>
+                <small class="invalid" *ngIf="errores.has('marca')">{{errores.get('marca')}}</small>
             </div>
-
+            <!-- Unidad de medida -->
             <div class="p-fieldc" style="margin-right: 20px;">
                 <label><b>Unidad de medida <p class="lbl err">*</p></b></label>
-                <p-dropdown [options]="categories" formControlName="subCategoria" class="inp" optionLabel="descripcion"
-                    [filter]="true" filterBy="descripcion" [showClear]="true" placeholder="Seleccione una categoria">
+                <p-dropdown [options]="unidadMedidas" formControlName="unidadMedida" class="inp" optionLabel="descripcion"
+                    [filter]="true" filterBy="descripcion" [showClear]="true" placeholder="Seleccione una U. medida">
                     <ng-template pTemplate="selectedItem">
-                        <div *ngIf="productoForm.value['subCategoria']">
-                            <div>{{this.productoForm.value['subCategoria'].descripcion}}</div>
+                        <div *ngIf="productoForm.value['unidadMedida']">
+                            <div>{{this.productoForm.value['unidadMedida'].descripcion}}</div>
                         </div>
                     </ng-template>
-                    <ng-template let-cat pTemplate="item">
+                    <ng-template let-Umed pTemplate="item">
                         <div>
-                            <div>{{cat.descripcion}}</div>
+                            <div>{{Umed.descripcion}}</div>
                         </div>
                     </ng-template>
                 </p-dropdown>
-                <small class="invalid" *ngIf="errores.has('categoria')">{{errores.get('categoria')}}</small>
+                <small class="invalid" *ngIf="errores.has('unidadMedida')">{{errores.get('unidadMedida')}}</small>
             </div>
         </div>
 
@@ -137,7 +139,7 @@
 </div>
 <div class="footer">
     <button class="buttons p-button-success" [disabled]="!productoForm.valid?true:false" type="button"
-        (click)="saveCategoria()" pButton icon="pi pi-plus" label="Guardar"></button>
+        (click)="saveProducto()" pButton icon="pi pi-plus" label="Guardar"></button>
     <button class="buttons p-button-danger" type="button" (click)="dismissDialog()" pButton icon="pi pi-plus"
         label="Cancelar"></button>
 </div>
