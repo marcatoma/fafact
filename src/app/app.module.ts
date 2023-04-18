@@ -22,7 +22,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
-import { PrimeIcons } from 'primeng/api';
+import { VentasModule } from './ventas/ventas.module';
 
 
 @NgModule({
@@ -31,15 +31,17 @@ import { PrimeIcons } from 'primeng/api';
     SidenavComponent,
     DashboardComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-   // HomeModule,
+    // HomeModule,
+    PanelMenuModule,
+    VentasModule,
+    //
     AppRoutingModule,
     HttpClientModule,
-    PanelMenuModule,
     MatSidenavModule,
     MatToolbarModule,
     MatMenuModule,

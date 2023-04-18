@@ -39,10 +39,11 @@ export class SidenavComponent implements OnInit {
         ]
       },
       {
-        label: 'Edit',
+        label: 'Ventas',
         icon: 'pi pi-fw pi-pencil',
         items: [
-          { label: 'Delete', icon: 'pi pi-fw pi-trash' },
+          { label: 'Clientes', icon: 'pi pi-users', routerLink:['ventas/cliente'] },
+          { label: 'Realizar venta', icon: 'pi pi-shopping-bag' },
           { label: 'Refresh', icon: 'pi pi-fw pi-refresh' }
         ]
       },
