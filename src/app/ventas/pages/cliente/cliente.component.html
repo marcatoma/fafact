@@ -1,0 +1,62 @@
+<h1 class="tittle">Modulo: Ventas - Clientes</h1>
+<div class="header m-3">
+    <button type="button" (click)="show({})" pButton icon="pi pi-plus" label="Nuevo"></button>
+</div>
+<div class="content">
+    <div class="tabla">
+        <p-table #dt1 [value]="clienteList" [paginator]="true" [rows]="rowsPerPage" [lazy]="true"
+            [showCurrentPageReport]="true" [tableStyle]="{'min-width': '50rem'}" [totalRecords]="totalRecords"
+            (rowsChange)="onSelectRowChange($event)" (firstChange)="onFirtsChange($event)"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10,25,50]">
+
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <button pButton label="Clear" class="p-button-outlined mx-3" (click)="clearFilter()"
+                        icon="pi pi-filter-slash"></button>
+                    <span class="p-input-icon-left ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="filtrarPorQuery($event)" [(ngModel)]="query"
+                            placeholder="Search keyword" />
+                    </span>
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Identificacion</th>
+                    <th>Razon social</th>
+                    <th>Celular</th>
+                    <th>Direccion</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-clie>
+                <tr>
+                    <td>{{clie.identificacion}}</td>
+                    <td>{{clie.nombreRazonSocial}}</td>
+                    <td>{{clie.celular}}</td>
+                    <td>{{clie.direccion}}</td>
+                    <td>{{clie.estado?'Activo':'Inactivo'}}</td>
+                    <td>
+                        <button pButton (click)="show(clie)"
+                            class="p-button-raised p-button-rounded p-button-secondary btn_action" type="button"
+                            icon="pi pi-eye" iconPos="left"></button>
+                        <button pButton (click)="show(clie)"
+                            class="p-button-raised p-button-rounded p-button-help btn_action mx-2" type="button"
+                            icon="pi pi-pencil" iconPos="left"></button>
+                        <button pButton class="p-button-raised p-button-rounded p-button-danger btn_action"
+                            type="button" icon="pi pi-trash" iconPos="left"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorleft">
+                <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+            </ng-template>
+            <ng-template pTemplate="paginatorright">
+                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

@@ -1,16 +1,35 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { VentasRoutingModule } from './ventas-routing.module';
-import { VentaComponent } from './venta/venta.component';
-import { ClienteComponent } from './cliente/cliente.component';
+import { VentaComponent } from './pages/venta/venta.component';
+import { ClienteComponent } from './pages/cliente/cliente.component';
+import { ClienteFormComponent } from './pages/cliente/cliente-form/cliente-form.component';
+
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { MessagesModule } from 'primeng/messages';
+import { DropdownModule } from 'primeng/dropdown';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 
 @NgModule({
-  declarations: [VentaComponent, ClienteComponent],
+  declarations: [VentaComponent, ClienteComponent, ClienteFormComponent],
   imports: [
     CommonModule,
-    VentasRoutingModule
+    VentasRoutingModule,
+    FormsModule,
+    // prime ng modules
+    ButtonModule,
+    TableModule,
+    InputTextModule,
+    MessagesModule,
+    FormsModule,
+    ReactiveFormsModule,
+    DropdownModule,
+    AutoCompleteModule,
   ]
 })
 export class VentasModule { }

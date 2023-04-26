@@ -1,0 +1,35 @@
+// codigo para dar el ancho al dropdown
+:host ::ng-deep .p-dropdown {
+    width: 100%;
+}
+
+label {
+    margin: 5px;
+}
+.lbl,
+.inp {
+    display: block;
+    width: 100%;
+}
+.err {
+    display: inline;
+    color: red;
+}
+.invalid {
+    color: red;
+}
+
+.p-fieldc {
+    // margin-right: 20px;
+    width: 50%;
+}
+
+.field-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.p-fieldF{
+    width: 100%;
+}

@@ -172,7 +172,6 @@ export class ProductoFormComponent implements OnInit {
   }
 
   listarSubCategorias(idCate: number) {
-    this.productoForm
     if (idCate) {
       this.subCategoriaService.ListarSubCategoria(idCate).subscribe({
         next: (response) => {

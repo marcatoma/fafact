@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProductoService } from 'src/app/almacen/services/producto.service';
 import { Paginador } from 'src/app/models/paginador.model';
@@ -11,7 +11,7 @@ import { ProductoFormComponent } from './producto-form/producto-form.component';
   styleUrls: ['./producto.component.scss'],
   providers: [DialogService],
 })
-export class ProductoComponent implements OnInit {
+export class ProductoComponent implements OnInit, OnDestroy {
   productoList: ProductoModel[];
   first = 0;
   rowsPerPage = 10;

@@ -1,0 +1,78 @@
+<div class="contenido">
+    <p-messages [(value)]="msg"></p-messages>
+    <div class="mensajes">
+        <p-messages></p-messages>
+    </div>
+    <form [formGroup]="clienteForm">
+        <div class="p-field">
+            <label><b>Nombre/Razon social<p class="lbl err">*</p></b></label>
+            <input type="text" pInputText class="inp" required autofocus autocomplete="off"
+                formControlName="nombreRazonSocial" />
+            <small class="invalid" *ngIf="errores.has('nombreRazonSocial')">{{errores.get('nombreRazonSocial')}}</small>
+        </div>
+        <!-- tipos de identificacion -->
+        <div class="field-row">
+            <div class="p-fieldc" style="margin-right: 20px;">
+                <label><b>Tipo de identificacion <p class="lbl err">*</p></b></label>
+                <p-dropdown [options]="tipoIdentidadList" formControlName="tipoIdentificacion" class="inp"
+                    optionLabel="descripcion" [filter]="true" filterBy="descripcion" [showClear]="true"
+                    placeholder="Seleccione un tipo de identificacion">
+                    <ng-template pTemplate="selectedItem">
+                        <div *ngIf="clienteForm.value['tipoIdentificacion']">
+                            <div>{{this.clienteForm.value['tipoIdentificacion'].descripcion}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-tipoId pTemplate="item">
+                        <div>
+                            <div>{{tipoId.descripcion}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <small class="invalid"
+                    *ngIf="errores.has('tipoIdentificacion')">{{errores.get('tipoIdentificacion')}}</small>
+            </div>
+            <div class="p-fieldc">
+                <label><b>Identificacion <p class="lbl err">*</p></b></label>
+                <input type="text" pInputText class="inp" autofocus autocomplete="off"
+                    formControlName="identificacion" />
+                <small class="invalid" *ngIf="errores.has('identificacion')">{{errores.get('identificacion')}}</small>
+            </div>
+        </div>
+        <!-- fila de campos CELULAR Y EMAIL -->
+        <div class="field-row">
+            <div class="p-fieldc" style="margin-right: 20px;">
+                <label><b>Celular <p class="lbl err">*</p></b></label>
+                <input type="text" pInputText class="inp" required autofocus autocomplete="off"
+                    formControlName="celular" />
+                <small class="invalid" *ngIf="errores.has('celular')">{{errores.get('celular')}}</small>
+            </div>
+            <div class="p-fieldc">
+                <label><b>Email <p class="lbl err">*</p></b></label>
+                <input type="text" pInputText class="inp" autofocus autocomplete="off" formControlName="email" />
+                <small class="invalid" *ngIf="errores.has('email')">{{errores.get('email')}}</small>
+            </div>
+        </div>
+        <!-- campo de CIUDAD -->
+
+        <div class="p-field">
+            <label><b>Ciudad<p class="lbl err">*</p></b></label>
+            <p-autoComplete [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" formControlName="ciudad" [suggestions]="[]" (completeMethod)="searchCity($event)"
+            class="inp"></p-autoComplete>
+            <small class="invalid" *ngIf="errores.has('ciudad')">{{errores.get('ciudad')}}</small>
+        </div>
+        <!-- campo de direccion -->
+        <div class="p-field">
+            <label><b>Direccion<p class="lbl err">*</p></b></label>
+            <input type="text" pInputText class="inp" required autofocus autocomplete="off"
+                formControlName="direccion" />
+            <small class="invalid" *ngIf="errores.has('direccion')">{{errores.get('direccion')}}</small>
+        </div>
+        <!-- campo de observacion -->
+        <div class="p-field">
+            <label><b>Observacion<p class="lbl err"></p></b></label>
+            <input type="text" pInputText class="inp" required autofocus autocomplete="off"
+                formControlName="observacion" />
+            <small class="invalid" *ngIf="errores.has('observacion')">{{errores.get('observacion')}}</small>
+        </div>
+    </form>
+</div>
