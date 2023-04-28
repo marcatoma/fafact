@@ -1,4 +1,4 @@
-import { CiudadModel } from "./ciudad.model";
+import { CantonModel } from "./canton.model";
 import { TipoIdentifiacionModel } from "./tipo-identifiacion.model";
 
 export interface PersonaModel {
@@ -11,5 +11,5 @@ export interface PersonaModel {
     email?: String;
     observacion?: String;
     estado?: boolean;
-    ciudad?: CiudadModel;
+    canton?: CantonModel;
 }

@@ -52,13 +52,13 @@
                 <small class="invalid" *ngIf="errores.has('email')">{{errores.get('email')}}</small>
             </div>
         </div>
-        <!-- campo de CIUDAD -->
-
+        <!-- campo de CANTON -->
         <div class="p-field">
-            <label><b>Ciudad<p class="lbl err">*</p></b></label>
-            <p-autoComplete [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" formControlName="ciudad" [suggestions]="[]" (completeMethod)="searchCity($event)"
-            class="inp"></p-autoComplete>
-            <small class="invalid" *ngIf="errores.has('ciudad')">{{errores.get('ciudad')}}</small>
+            <label><b>Canton<p class="lbl err">*</p></b></label>
+            <p-autoComplete [required]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
+                formControlName="canton" [suggestions]="cantones" field="nombreCanton" [lazy]="true" (completeMethod)="searchCity($event)"
+                class="inp"></p-autoComplete>
+            <small class="invalid" *ngIf="errores.has('canton')">{{errores.get('canton')}}</small>
         </div>
         <!-- campo de direccion -->
         <div class="p-field">
@@ -74,5 +74,21 @@
                 formControlName="observacion" />
             <small class="invalid" *ngIf="errores.has('observacion')">{{errores.get('observacion')}}</small>
         </div>
+        <!--  -->
+        <div class="switches">
+            <label class="toggle">
+                <span class="toggle-label"> <b> Estado: </b></span>
+                <input class="toggle-checkbox" type="checkbox" formControlName="estado">
+                <div class="toggle-switch"></div>
+                <span class="toggle-label">{{ clienteForm.value['estado'] }}</span>
+            </label>
+        </div>
     </form>
+</div>
+<hr>
+<div class="footer">
+    <button class="buttons p-button-success" [disabled]="!clienteForm.valid?true:false" type="button"
+        (click)="saveCliente()" pButton icon="pi pi-plus" label="Guardar"></button>
+    <button class="buttons p-button-danger" type="button" (click)="dismissDialog()" pButton icon="pi pi-plus"
+        label="Cancelar"></button>
 </div>

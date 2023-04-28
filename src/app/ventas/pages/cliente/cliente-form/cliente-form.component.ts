@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Message, MessageService } from 'primeng/api';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CantonModel } from 'src/app/models/canton.model';
 import { ClienteModel } from 'src/app/models/cliente.model';
 import { TipoIdentifiacionModel } from 'src/app/models/tipo-identifiacion.model';
+import { CantonService } from 'src/app/ventas/services/canton.service';
 import { ClienteService } from 'src/app/ventas/services/cliente.service';
 
 @Component({
   selector: 'app-cliente-form',
   templateUrl: './cliente-form.component.html',
-  styleUrls: ['./cliente-form.component.scss'],
+  styleUrls: ['./cliente-form.component.scss', '../../../../shared/estilos/toggle.scss'],
   providers: [MessageService]
 
 })
@@ -20,10 +22,11 @@ export class ClienteFormComponent implements OnInit {
   msg: Message[] = [];
   clienteForm: any = {};
   errores: Map<String, String> = new Map();
-
+  cantones: CantonModel[] = [];
+  queryCanton: string = '';
 
   constructor(public config: DynamicDialogConfig, public messageService: MessageService, private formBuilder: FormBuilder,
-    private clienteService: ClienteService) {
+    private clienteService: ClienteService, private cantonService: CantonService, public ref: DynamicDialogRef) {
     if (config.data.idPersona) {
       this.cliente = { ...config.data }
       console.log(this.cliente);
@@ -42,6 +45,7 @@ export class ClienteFormComponent implements OnInit {
     this.cliente.nombreRazonSocial = this.clienteForm.value['nombreRazonSocial'];
     this.cliente.tipoIdentificacion = this.clienteForm.value['tipoIdentificacion'];
     this.cliente.identificacion = this.clienteForm.value['identificacion'];
+    this.cliente.canton = this.clienteForm.value['canton'];
     this.cliente.direccion = this.clienteForm.value['direccion'];
     this.cliente.celular = this.clienteForm.value['celular'];
     this.cliente.email = this.clienteForm.value['email'];
@@ -49,13 +53,15 @@ export class ClienteFormComponent implements OnInit {
     this.cliente.estado = this.clienteForm.value['estado'];
   }
 
+  saveCliente(): void { }
+
   loadForm(): void {
 
     this.clienteForm = this.formBuilder.group({
       nombreRazonSocial: new FormControl(this.cliente.nombreRazonSocial, { validators: Validators.required }),
       tipoIdentificacion: new FormControl(this.cliente.tipoIdentificacion, { validators: Validators.required }),
       identificacion: new FormControl(this.cliente.identificacion, { validators: Validators.required }),
-      ciudad: new FormControl(this.cliente.ciudad, { validators: Validators.required }),
+      canton: new FormControl(this.cliente.canton, { validators: Validators.required }),
       direccion: new FormControl(this.cliente.direccion, { validators: Validators.required }),
       celular: new FormControl(this.cliente.celular, { validators: Validators.required }),
       email: new FormControl(this.cliente.email, { validators: Validators.required }),
@@ -83,8 +89,36 @@ export class ClienteFormComponent implements OnInit {
   }
 
   searchCity(event: any) {
-    console.log('busqueda');
-
+    const q = event.query;
+    console.log(event.query);
+    this.cantonService.filtrarCantones(q).subscribe({
+      next: (response) => {
+        this.cantones = response.content;
+      },
+      error: (err) => {
+        //imprimir el error
+        console.log(err.error.error);
+      },
+    });
+    console.log(this.cantones);
+    
   }
 
+  filtrarCanton(event: any) {
+    console.log(event.value);
+
+    /*
+    this.cantonService.filtrarCantones('').subscribe({
+      next: (response) => {
+        this.cantones = response.content;
+      },
+      error: (err) => {
+        //imprimir el error
+        console.log(err.error.error);
+      },
+    });*/
+  }
+  dismissDialog() {
+    this.ref.close();
+  }
 }

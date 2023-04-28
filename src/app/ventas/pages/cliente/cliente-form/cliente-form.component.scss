@@ -6,15 +6,18 @@
 label {
     margin: 5px;
 }
+
 .lbl,
 .inp {
     display: block;
     width: 100%;
 }
+
 .err {
     display: inline;
     color: red;
 }
+
 .invalid {
     color: red;
 }
@@ -30,6 +33,20 @@ label {
     flex-direction: row;
 }
 
-.p-fieldF{
+.p-fieldF {
     width: 100%;
+}
+
+.switches {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.footer button {
+    display: inline;
+    margin-inline: 40px;
+    align-content: flex-end;
 }
