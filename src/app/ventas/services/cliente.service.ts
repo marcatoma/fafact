@@ -36,7 +36,7 @@ export class ClienteService {
     )
   }
 
-  RegistrarProducto(cliente: ClienteModel): Observable<ClienteModel> {
+  RegistrarCliente(cliente: ClienteModel): Observable<ClienteModel> {
     return this.http.post(this.url + 'crear', cliente).pipe(
       map((response: any) => response), catchError((e) => {
         console.log(e);

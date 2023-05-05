@@ -5,4 +5,5 @@ export interface CantonModel {
     codigoCanton?: string;
     nombreCanton?: string;
     provincia?: ProvinciaModel;
+    composeCanton?: string;
 }

@@ -1,5 +1,5 @@
 <div class="contenido">
-    <p-messages [(value)]="msg"></p-messages>
+    <p-messages [(value)]="msg" [enableService]="!msg"></p-messages>
     <div class="mensajes">
         <p-messages></p-messages>
     </div>
@@ -56,8 +56,8 @@
         <div class="p-field">
             <label><b>Canton<p class="lbl err">*</p></b></label>
             <p-autoComplete [required]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
-                formControlName="canton" [suggestions]="cantones" field="nombreCanton" [lazy]="true" (completeMethod)="searchCity($event)"
-                class="inp"></p-autoComplete>
+                formControlName="canton" [suggestions]="cantones" field="composeCanton" [lazy]="true"
+                (completeMethod)="searchCanton($event)" class="inp"></p-autoComplete>
             <small class="invalid" *ngIf="errores.has('canton')">{{errores.get('canton')}}</small>
         </div>
         <!-- campo de direccion -->
@@ -70,8 +70,7 @@
         <!-- campo de observacion -->
         <div class="p-field">
             <label><b>Observacion<p class="lbl err"></p></b></label>
-            <input type="text" pInputText class="inp" required autofocus autocomplete="off"
-                formControlName="observacion" />
+            <input type="text" pInputText class="inp" autofocus autocomplete="off" formControlName="observacion" />
             <small class="invalid" *ngIf="errores.has('observacion')">{{errores.get('observacion')}}</small>
         </div>
         <!--  -->
@@ -87,7 +86,7 @@
 </div>
 <hr>
 <div class="footer">
-    <button class="buttons p-button-success" [disabled]="!clienteForm.valid?true:false" type="button"
+    <button class="buttons p-button-success" [disabled]="!clienteForm.valid? true : false" type="button"
         (click)="saveCliente()" pButton icon="pi pi-plus" label="Guardar"></button>
     <button class="buttons p-button-danger" type="button" (click)="dismissDialog()" pButton icon="pi pi-plus"
         label="Cancelar"></button>

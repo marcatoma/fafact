@@ -67,6 +67,8 @@ export class ClienteComponent implements OnInit, OnDestroy {
   }
 
   show(cliente: ClienteModel) {
+    console.log(cliente);
+    
     this.ref = this.dialogService.open(ClienteFormComponent, {
       header: 'Formulario de Cliente',
       width: '70%',

@@ -29,8 +29,6 @@ export class ClienteFormComponent implements OnInit {
     private clienteService: ClienteService, private cantonService: CantonService, public ref: DynamicDialogRef) {
     if (config.data.idPersona) {
       this.cliente = { ...config.data }
-      console.log(this.cliente);
-
     }
   }
   ngOnInit(): void {
@@ -53,10 +51,41 @@ export class ClienteFormComponent implements OnInit {
     this.cliente.estado = this.clienteForm.value['estado'];
   }
 
-  saveCliente(): void { }
+  saveCliente(): void {
+    this.asignarValoresToSave();
+    this.clienteService.RegistrarCliente(this.cliente).subscribe({
+      error: (err) => {
+        if (err.status == 406) {
+          const m = err.error.error;
+          for (var value in m) {
+            this.errores.set(value, m[value]);
+          }
+        }
+        else {
+          //limpiar los mensajes anteriores
+          this.messageService.clear();
+          this.messageService.add({ severity: 'error', summary: err.error.mensaje, detail: err.error.error });
+        }
+      },    // errorHandler 
+      next: (res) => {
+        //limpiar los mensajes anteriores
+        this.messageService.clear();
+        this.errores = new Map();
+
+        if (this.cliente.idPersona) {
+          // cerrar el dialog al terminar de guardar o editar
+          this.dismissDialog();
+        } else {
+          this.cliente = {};
+          this.loadForm();
+        }
+
+      },     // nextHandler
+    })
+  }
 
   loadForm(): void {
-
+    this.cliente.estado = true;
     this.clienteForm = this.formBuilder.group({
       nombreRazonSocial: new FormControl(this.cliente.nombreRazonSocial, { validators: Validators.required }),
       tipoIdentificacion: new FormControl(this.cliente.tipoIdentificacion, { validators: Validators.required }),
@@ -67,12 +96,6 @@ export class ClienteFormComponent implements OnInit {
       email: new FormControl(this.cliente.email, { validators: Validators.required }),
       observacion: new FormControl(this.cliente.observacion),
       estado: new FormControl(this.cliente.estado),
-      /*
-      categoria: new FormControl(this.producto.subCategoria?.categoria, { validators: Validators.required }),
-      inventariable: new FormControl(this.producto.inventariable, { validators: Validators.required }),
-      descripcion: new FormControl(this.producto.descripcion),
-      stock: new FormControl(this.producto.stock),
-      */
     });
 
   }
@@ -88,9 +111,8 @@ export class ClienteFormComponent implements OnInit {
     });
   }
 
-  searchCity(event: any) {
+  searchCanton(event: any) {
     const q = event.query;
-    console.log(event.query);
     this.cantonService.filtrarCantones(q).subscribe({
       next: (response) => {
         this.cantones = response.content;
@@ -100,24 +122,8 @@ export class ClienteFormComponent implements OnInit {
         console.log(err.error.error);
       },
     });
-    console.log(this.cantones);
-    
   }
 
-  filtrarCanton(event: any) {
-    console.log(event.value);
-
-    /*
-    this.cantonService.filtrarCantones('').subscribe({
-      next: (response) => {
-        this.cantones = response.content;
-      },
-      error: (err) => {
-        //imprimir el error
-        console.log(err.error.error);
-      },
-    });*/
-  }
   dismissDialog() {
     this.ref.close();
   }
