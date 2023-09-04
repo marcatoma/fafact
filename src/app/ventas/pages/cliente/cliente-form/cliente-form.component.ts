@@ -27,6 +27,7 @@ export class ClienteFormComponent implements OnInit {
 
   constructor(public config: DynamicDialogConfig, public messageService: MessageService, private formBuilder: FormBuilder,
     private clienteService: ClienteService, private cantonService: CantonService, public ref: DynamicDialogRef) {
+    this.parametrosIniciales();
     if (config.data.idPersona) {
       this.cliente = { ...config.data }
     }
@@ -69,6 +70,8 @@ export class ClienteFormComponent implements OnInit {
       },    // errorHandler 
       next: (res) => {
         //limpiar los mensajes anteriores
+        console.log(res);
+
         this.messageService.clear();
         this.errores = new Map();
 
@@ -77,6 +80,7 @@ export class ClienteFormComponent implements OnInit {
           this.dismissDialog();
         } else {
           this.cliente = {};
+          this.parametrosIniciales();
           this.loadForm();
         }
 
@@ -85,7 +89,6 @@ export class ClienteFormComponent implements OnInit {
   }
 
   loadForm(): void {
-    this.cliente.estado = true;
     this.clienteForm = this.formBuilder.group({
       nombreRazonSocial: new FormControl(this.cliente.nombreRazonSocial, { validators: Validators.required }),
       tipoIdentificacion: new FormControl(this.cliente.tipoIdentificacion, { validators: Validators.required }),
@@ -126,5 +129,9 @@ export class ClienteFormComponent implements OnInit {
 
   dismissDialog() {
     this.ref.close();
+  }
+
+  parametrosIniciales() {
+    this.cliente.estado = true;
   }
 }

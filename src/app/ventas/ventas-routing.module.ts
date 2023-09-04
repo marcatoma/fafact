@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     children: [
       { path: 'cliente', component: ClienteComponent },
-      { path: 'venta', component: VentaComponent },
+      { path: 'factura', component: VentaComponent },
       // { path: '**', redirectTo: '' },
     ]
   }

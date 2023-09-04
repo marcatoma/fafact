@@ -21,21 +21,12 @@ export class SidenavComponent implements OnInit {
       {
         label: 'Almacen',
         icon: 'pi pi-pw pi-box',
-        items: [{
-          label: 'New',
-          icon: 'pi pi-fw pi-plus',
-          items: [
-            { label: 'User', icon: 'pi pi-fw pi-user-plus' },
-            { label: 'Filter', icon: 'pi pi-fw pi-filter' }
-          ]
-        },
+        items: [
         { label: 'Categoria', icon: 'pi pi-fw pi-tags', routerLink: ['almacen/categoria'] },
-        { label: 'Producto', icon: 'pi pi-fw pi-book', routerLink: ['almacen/producto'] },
         { separator: true },
         { label: 'Unidad de medida', icon: 'pi pi-fw pi-percentage', routerLink: ['almacen/unidad-medida'] },
         { label: 'Marca', icon: 'pi pi-fw pi-bookmark', routerLink: ['almacen/marca'] },
-
-        { label: 'Quit', icon: 'pi pi-fw pi-times' },
+        { label: 'Producto', icon: 'pi pi-fw pi-book', routerLink: ['almacen/producto'] },
         ]
       },
       {
@@ -43,7 +34,7 @@ export class SidenavComponent implements OnInit {
         icon: 'pi pi-fw pi-pencil',
         items: [
           { label: 'Clientes', icon: 'pi pi-users', routerLink:['ventas/cliente'] },
-          { label: 'Realizar venta', icon: 'pi pi-shopping-bag' },
+          { label: 'Realizar venta', icon: 'pi pi-shopping-bag', routerLink:['ventas/factura'] },
           { label: 'Refresh', icon: 'pi pi-fw pi-refresh' }
         ]
       },

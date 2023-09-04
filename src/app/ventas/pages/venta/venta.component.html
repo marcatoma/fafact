@@ -1,1 +1,47 @@
-<p>venta works!</p>
+<h1 class="tittle">Modulo: Ventas - Facturacion</h1>
+<hr>
+<div class="grid">
+    <div class="button-group">
+        <p-button label="Primary" class="button-group-btn" styleClass="p-button-rounded"></p-button>
+        <p-button label="Secondary" class="button-group-btn" styleClass="p-button-rounded p-button-secondary"></p-button>
+        <p-button label="Capturar productos" (onClick)="showModoCaptura()" class="button-group-btn"
+            styleClass="p-button-rounded p-button-success"></p-button>
+    </div>
+</div>
+
+<div class="content">
+    <div class="content-cliente">
+        <h6>Cliente</h6>
+        <div class="p-input-icon-left" style="width: 100%; display: inline-block;">
+            <div style="width: 50%; display: inline;">
+                <input type="text" class="p-inputtext-sm" pInputText [(ngModel)]="valueIdentificacion"
+                    placeholder="identificacion" (keydown.enter)="buscarCliente($event)" />
+                <p-button class="button-client" label="Consumidor Final" (onClick)="buscarCliente($event)"
+                    styleClass="p-button-rounded p-button-help"></p-button>
+            </div>
+            <input type="text" class="p-inputtext-sm" [disabled]="true" style="min-width: 50%;" pInputText
+                [(ngModel)]="objCliente.nombreRazonSocial" placeholder="Razon social / nombre" />
+        </div>
+    </div>
+    <hr>
+    <div class="content-detalle">
+        <p-table [value]="detalleFactura" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-fd>
+                <tr>
+                    <td>{{ fd.cantidad }}</td>
+                    <td>{{ fd.cantidad }}</td>
+                    <td>{{ fd.cantidad }}</td>
+                    <td>{{ fd }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

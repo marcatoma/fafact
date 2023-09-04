@@ -26,6 +26,15 @@ export class ClienteService {
     )
   }
 
+  buscarClienteIdentificacion(identificacion: string): Observable<any> {
+    let params = { 'q': identificacion };
+    return this.http.get(this.url + 'listar/identificacion', { params }).pipe(map((response: any) => response),
+      catchError((e) => {
+        console.log(e);
+        return throwError(() => e);
+      }));
+  }
+
   ListarTipoIdentificacion(): Observable<any> {
     return this.http.get(this.urlTipoIdentificacion + 'listar').pipe(
       map((response: any) => response),

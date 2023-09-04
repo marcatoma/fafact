@@ -1,0 +1,42 @@
+<div class="contenido">
+    <form [formGroup]="modoCapturaForm">
+
+
+        <div class="p-field">
+            <label class="p-lbl">Codigo de producto</label>
+            <input type="text" (keydown.enter)="obtenerProductoByCodigo($event)" formControlName="queryCodigo"
+                pInputText class="p-inputtext-sm" required autofocus autocomplete="off" />
+        </div>
+
+        <div class="p-field">
+            <label class="p-lbl">Nombre de producto</label>
+            <input type="text" formControlName="nombreProducto" pInputText class="inp p-inputtext-sm"
+                autocomplete="off" />
+        </div>
+        <div class="dual">
+            <div class="p-field-dual">
+                <label class="p-lbl">Cantidad</label>
+                <input type="text" pInputText class="inp p-inputtext-sm" disabled autocomplete="off" />
+            </div>
+
+            <div class="p-field-dual">
+                <label class="p-lbl">Precio unitario</label>
+                <p-inputNumber formControlName="precioUnitario" class="inp p-inputtext-sm" inpudId="locale-us" mode="decimal" locale="en-US"
+                    [minFractionDigits]="2">
+                </p-inputNumber>
+            </div>
+        </div>
+        <div class="dual">
+            <div class="p-field-dual">
+                <label class="p-lbl">Items en factura</label>
+                <input type="text" pInputText class="inp p-inputtext-sm" disabled autocomplete="off" />
+            </div>
+
+            <div class="p-field-dual">
+                <label class="p-lbl">Sub total</label>
+                <input type="text" pInputText class="inp p-inputtext-sm" disabled autocomplete="off" />
+            </div>
+        </div>
+
+    </form>
+</div>

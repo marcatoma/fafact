@@ -14,6 +14,17 @@ export class ProductoService {
 
   constructor(private http: HttpClient) { }
 
+  ListarProductoByCodigo(q: string): Observable<any> {
+    let params = { 'q': q };
+    return this.http.get(this.url + 'listar/bycode', { params }).pipe(
+      map((response: any) => response),
+      catchError((e) => {
+        console.log(e);
+        return throwError(() => e);
+      })
+    )
+  }
+
   ListarProducto(page: number, filas: number, q: string): Observable<any> {
     let params = { 'q': q };
     return this.http.get(this.url + 'listar/page/' + page + '/filas/' + filas, { params }).pipe(

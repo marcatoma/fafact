@@ -1,0 +1,25 @@
+:host ::ng-deep .p-inputtext {
+    width: 100%;
+}
+.contenido{
+    text-align: center;
+    width: 100%;
+}
+.p-lbl{
+    margin: 1rem;
+}
+
+.p-field-dual{
+    margin-inline: 1rem;
+    display: inline-block;
+    width: 35%;
+}
+.p-field{
+    // display: block;
+    margin: 0px auto;
+    margin-bottom: 1rem;
+    width: 75%;
+}
+.inp{
+    background-color: yellow;
+}
